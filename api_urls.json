@@ -1,0 +1,17 @@
+{
+  "KAMIS": {
+    "daily_price": "https://www.data.go.kr/data/15156057/openapi.do",
+    "monthly_price": "https://www.data.go.kr/data/15156060/openapi.do",
+    "regional_price": "https://www.data.go.kr/data/15156062/openapi.do",
+    "price_trend": "https://www.data.go.kr/data/15156069/openapi.do",
+    "period_retail": "https://www.data.go.kr/data/15156065/openapi.do"
+  },
+  "MAFRA": {
+    "wholesale_auction": "https://data.mafra.go.kr/opendata/data/indexOpenDataDetail.do?data_id=20240625000000002462",
+    "wholesale_settlement": "https://data.mafra.go.kr/opendata/data/indexOpenDataDetail.do?data_id=20240625000000002459",
+    "production_area": "https://data.mafra.go.kr/opendata/data/indexOpenDataDetail.do?data_id=20141020000000000321"
+  },
+  "KOSIS": {
+    "export_import": "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+  }
+}
