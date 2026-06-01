@@ -1,0 +1,36 @@
+name: 농산물 데이터 자동 갱신
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 매일 한국시간 자정(UTC 15시) 실행
+  workflow_dispatch:       # 수동 실행도 가능
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v3
+
+      - name: Python 설정
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 패키지 설치
+        run: pip install requests pandas pyarrow
+
+      - name: 데이터 수집 및 갱신
+        env:
+          KAMIS_API_KEY: ${{ secrets.KAMIS_API_KEY }}
+          KMA_API_KEY: ${{ secrets.KMA_API_KEY }}
+        run: python update_data.py
+
+      - name: 변경사항 커밋 & 푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add merged.parquet
+          git diff --cached --quiet || git commit -m "데이터 자동 갱신: $(date '+%Y-%m-%d')"
+          git push
